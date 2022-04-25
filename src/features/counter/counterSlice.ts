@@ -26,6 +26,15 @@ export const incrementAsync = createAsyncThunk(
   }
 );
 
+// this counterSlice constant will receive the return of the createSlice with the below params, which will return an object, with the following properties:
+// actions: decrement, increment, incrementByAmount, superIncrement
+    // each of these actions have some properties, including the property "type"
+// caseReducers: decrement, increment, incrementByAmount, superIncrement
+  // each of these reducers are the functions inside the reducers in the createSlice function
+// the function getInitialState
+// name property, whose value is "counter"
+// you can find the the extraReducers in the first scope of the properties getInitialState and reducer (getInitialState/reducer --> [[Scopes]] --> 0: Closure --> options --> extraReducers), use the console.log(first line after createSlice function) below and check in the browser, if u double click the extraReducers it will show you the exact same function from this file
+
 export const counterSlice = createSlice({
   name: 'counter',
   initialState,
@@ -40,6 +49,9 @@ export const counterSlice = createSlice({
     },
     decrement: (state) => {
       state.value -= 1;
+    },
+    superIncrement: (state) => {
+      state.value += 100
     },
     // Use the PayloadAction type to declare the contents of `action.payload`
     incrementByAmount: (state, action: PayloadAction<number>) => {
@@ -59,8 +71,10 @@ export const counterSlice = createSlice({
       });
   },
 });
+console.log(counterSlice);
 
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export const { increment, decrement, incrementByAmount, superIncrement } = counterSlice.actions;
+
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
